@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600');
 *{
     box-sizing: border-box;
 }
 body{
     margin:0px; padding: 0px;
-    font-family: 'Open sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #367CD1;
     font-size: 16px;
     color:#fff;
@@ -18,6 +19,7 @@ body{
 .subtitle{
     text-transform: uppercase;
     text-align: center;
+    font-weight: bold;
 }
 p.msg-text{
     text-align: center;
@@ -63,4 +65,56 @@ input, select{
 .bottom-link a{
     font-size: .92rem;
     color:#fff;
+}
+.saldo{
+    text-align:center;
+    margin: 2rem 0;
+}
+.saldo p, .saldo h1{margin: 0px;}
+.saldo p{font-size: .75rem;}
+.saldo h1{font-weight: 300;}
+.contas{
+    margin:1rem 0;
+    overflow: scroll;
+    display:flex;
+}
+.contas::-webkit-scrollbar {display: none;}
+.conta p, .conta h3{margin:0px;}
+.conta p{font-size:.75rem;}
+.conta h3{font-weight:200;}
+.conta{
+    display: inline-block;
+    background: #4ac2e9;
+    padding: 2rem 1.5rem;
+    border-radius: 3px;
+    margin: 0 .5rem;
+    flex:1 0 auto;
+}
+
+
+.grafico{
+    display:flex;
+    height:50%;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100%;
+    padding: 0px 1.7rem;
+}
+.grafico .grafico-valor{
+    width: 3px;
+    background: #256ac4;
+    height: 100%;
+    margin: .7rem;
+}
+.grafico .grafico-valor .has-value{
+    width: 3px;
+    /*background: #e89c4a;*/
+    background: #4ac2e8;
+    position: absolute;
+    bottom: 0;
+    border-radius: 1rem;
+    height: 0px;
+    transition: 1s ease-out;
 }
