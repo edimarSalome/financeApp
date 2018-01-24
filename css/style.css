@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600');
-*{
-    box-sizing: border-box;
-}
+*{box-sizing: border-box;}
+*[ng-click]{cursor: pointer;}
 body{
     margin:0px; padding: 0px;
     font-family: 'Montserrat', sans-serif;
@@ -90,7 +89,14 @@ input, select{
     margin: 0 .5rem;
     flex:1 0 auto;
 }
-
+.conta.addContaLink{
+    background: #256ac4;
+    flex:0 0 auto;
+    line-height: 2.4rem;
+}
+.conta.debito{background:#fd7070 !important;}
+h3.debito, p.debito{color:#fd7070 !important;}
+h1.debito{color:#f98d8d !important;}
 
 .grafico{
     display:flex;
@@ -107,6 +113,7 @@ input, select{
     background: #256ac4;
     height: 100%;
     margin: .7rem;
+    flex: 1 0 auto;
 }
 .grafico .grafico-valor .has-value{
     width: 3px;
@@ -118,3 +125,34 @@ input, select{
     height: 0px;
     transition: 1s ease-out;
 }
+table.detalhes{
+    width: 100%;
+    background: #fff;
+    color: #333;
+    border: none;
+    border-spacing: 0px;
+}
+table.detalhes tr:last-child td.descricao, table.detalhes tr:last-child td.data{padding-bottom: 1.6rem;}
+table.detalhes tr td.categoria{background:#4ac2e8;}
+table.detalhes tr td.descricao, tr td.data{padding: .8rem 1rem;}
+table.detalhes tr td.descricao p{margin:0px;}
+table.detalhes tr td.descricao small{color:#969FAA;}
+table.detalhes tr td p.valor{color:#555;}
+table.detalhes tr td p.valor span{font-weight: bold;}
+table.detalhes tr td.data p{font-size: .7rem;}
+table.detalhes tr td i{
+    width: 16px;
+    height: 16px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: block;
+    margin: 0 auto;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+i.receita{background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAnFBMVEUAAABM6YtK6YtK6YpO64lL6Y9K6YtK6YtV445J7ZJK6YtK6YwA//9V/6pK6YtJ6YpJ6otL6ItJ6ItK6YtI54xM54tK6YtK6YtJ7YlJ6YpJ6YtJ6YtN5oBE7ohK6otK6YtJ6otK6YxL6IxK6ItK6YtJ6YtK6YtJ6YqA/4BK6YtK6YtK6YtK6YxK6opJ6ItK6YtL6ItJ6otK6YsAAADQR/thAAAAMnRSTlMAOdC6GiLrzAkO1aoBA7aBj1hl9zVA+uYcI+zNCg/WrIRonYZ/oO5pArDPuZRrQvxwp3NZ4OkAAAABYktHRACIBR1IAAAACXBIWXMAAA3XAAAN1wFCKJt4AAAAB3RJTUUH4gEXFDsL17lrowAAAJhJREFUOMvtkscOwjAQBY0pCSUQeg2h9/r+/+MIpua5nDkwJ0szsrzyCsFkZDYnHOQLgOfbfbGEhHLF5oMqFDVbEOJJ3ewbL49my+TbnXeAbk/3/QG+GI7YR2OkiHmUCYgpBTMO5hT4i2WCUqv7ab0xTqoC6fiLf/D7QbSVD1Sw03ywT62KfsMB7uAId3A6U8BvuPC6Xj/uBl/iNzn2A+UJAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTIzVDIwOjU5OjExKzAxOjAwV2HyyAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0yM1QyMDo1OToxMSswMTowMCY8SnQAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC');}
+i.despesa{background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAllBMVEUAAAD9b2/9cHD/b2/9cHD9cHD9cXH9cHD9cHD/VVX+b2//d3f+cHD/cXH9cHD9cHD9cXH9cHD/gID9cHD9b2/9cHD/amr9cHD+cHD/AAD/c3P9cHD/dHT/cHD9cHD9b2//cnL8cHD9cHD/cnL9cHD8b2/+cHD9cHD/dnb9cHD+cHD/bGz9cHD/cHD+cXH/b2/9cHAAAAB80PGmAAAAMHRSTlMAZ6Y8+s9m0JADtw+wCX+g7mkCm4V9DNKtAR/qCzv55x1g+DiLXLSGDdSvIes5vB5rrx4eAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAN1wAADdcBQiibeAAAAAd0SU1FB+IBFxUBCoTV73sAAACaSURBVDjLY2AAAkYDNMDEgAqYWdAUsKIpYGBDU8COroCBg5ACTi4CChi4edghALsbkAAuE0YVDC0FvHz8QABWIABiCQqhKRBGT7oiaApE0RUIoikQE0eVl5BEd4SUNErSl8F0pqwcQl5eAZtHFOHySsrYQ0EFpkAVRzAJqUHk1XEGpIYmSF5LEqcCBm0dYEjLMOABuux6+khcAIM3NMNYo02tAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTAxLTIzVDIxOjAxOjEwKzAxOjAwTgDMTwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0wMS0yM1QyMTowMToxMCswMTowMD9ddPMAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC');}

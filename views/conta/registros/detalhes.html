@@ -1,0 +1,38 @@
+<div class="saldo">
+    <p>Saldo <span ng-bind="conta.nome"></span></p>
+    <h1 ng-class="{'debito':conta.saldo<0}">R$ <b ng-bind="conta.saldo|currency:''"></b></h1>
+</div>
+<table class="detalhes">
+    <tr>
+        <td class="categoria">
+            &nbsp;
+        </td>
+        <td>
+            <i class="despesa">&nbsp;</i>
+        </td>
+        <td class="descricao">
+            <small>Eletrônicos</small>
+            <p>Photoshop</p>
+            <p class="valor">R$ <span>20,00</span></p>
+        </td>
+        <td width="1" class="data">
+            <p>20 JAN</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="categoria">
+            &nbsp;
+        </td>
+        <td>
+            <i class="receita">&nbsp;</i>
+        </td>
+        <td class="descricao">
+            <small>Investimentos</small>
+            <p>Bitcoins</p>
+            <p class="valor">R$ <span>1200,00</span></p>
+        </td>
+        <td width="1" class="data">
+            <p>20 JAN</p>
+        </td>
+    </tr>
+</table>
