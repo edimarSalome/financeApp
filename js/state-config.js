@@ -24,5 +24,13 @@ financeApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
             conta: null
         }
     })
-    
+    .state('registrar', {
+        url: '/registrar/{tipo}',
+        templateUrl: 'views/conta/registros/novoRegistro.html',
+        controller: 'novoRegistroCtrl',
+        controllerAs: '$ctrl',
+        params: {
+            conta: null
+        }
+    })
 ;}]);

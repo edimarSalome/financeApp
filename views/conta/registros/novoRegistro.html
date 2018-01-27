@@ -1,0 +1,39 @@
+<div class="saldo registro-valor" ng-class="{'receita':registro.tipo==='entrada', 'despesa':registro.tipo==='despesa'}">
+    <p>Nova <span ng-bind="registro.tipo"></span></p>
+    <div style="margin-top: 1rem;">
+        <h1>R$</h1>
+        <input type="tel" ng-model="registro.valor" />
+    </div>
+</div>
+<div class="registro-campos">
+    <div class="form-group">
+        <label>Categoria</label>
+        <select>
+            <option>Cuidados pessoais</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Descriçao</label>
+        <input type="text" ng-model="registro.descricao" />
+    </div>
+    <div style="display: flex">
+        <div class="form-group mr-1">
+            <label>Data</label>
+            <input type="date" ng-model="registro.data" />
+        </div>
+        <div class="form-group">
+            <label>Situação</label>
+            <select>
+                <option>Realizado</option>
+            </select>
+        </div>
+    </div>
+    <div style="display: flex">
+        <div class="form-group mr-1">
+            <a ui-sref="principal" class="btn full-width btn-link">Cancelar</a>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn full-width btn-primary">Salvar</button>
+        </div>
+    </div>
+</div>

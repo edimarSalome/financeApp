@@ -30,6 +30,8 @@ financeApp.controller("mainCtrl",['$scope','$sce','utils','$state', function($sc
         $scope.novaConta = function(){$state.go('addConta', {inside:true});};
         
         $scope.detalhesConta = function(conta){$state.go('conta', {conta: conta});};
+        $scope.openOptions = function(){$scope.options=!$scope.options;}
+        $scope.novoRegistro = function(tipo){ $state.go('registrar', {tipo: tipo}); };
         
         $ctrl.construct();
 }]);

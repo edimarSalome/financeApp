@@ -3,10 +3,7 @@
     <p>Saldo total</p>
     <h1 ng-class="{'debito':$ctrl.getSaldoTotal()<0}">R$ <b ng-bind="$ctrl.getSaldoTotal()|currency:''"></b></h1>
 </div>
-<div class="spinner" style="margin:60px auto;" ng-if="!charged">
-    <div class="double-bounce1"></div>
-    <div class="double-bounce2"></div>
-</div>
+<div class="spinner" style="margin:60px auto;" ng-if="!charged"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
 <div class="contas" ng-if="charged">
     <div class="conta" ng-repeat="conta in $ctrl.contas" ng-class="{'debito':conta.saldo<0}" ng-click="detalhesConta(conta)">
         <p ng-bind="conta.nome"></p>
@@ -53,4 +50,26 @@
     <span class="grafico-valor">
         <span class="has-value" style="height:80%;"></span>
     </span>
+</div>
+<div class="btn-wrapper">
+    <div class="dropdown" ng-class="{'active':options}">
+        <ul>
+            <li ng-click="novoRegistro('transferencia')">
+                <i class="transferencia">&nbsp;</i>
+                Transferência
+            </li>
+            <li ng-click="novoRegistro('entrada')">
+                <i class="receita">&nbsp;</i>
+                Entrada
+            </li>
+            <li ng-click="novoRegistro('despesa')">
+                <i class="despesa">&nbsp;</i>
+                Despesa
+            </li>
+        </ul>
+    </div>
+    
+    <button class="btn-circle btn-add" ng-class="{'active':options}" ng-click="openOptions()">
+        <div class="addSymbol">+</div>
+    </button>
 </div>
