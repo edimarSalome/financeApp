@@ -14,7 +14,7 @@
     <div style="display: flex">
         <div class="form-group mr-1">
             <label>Categoria</label>
-            <select ng-model="registro.categoria" required ng-class="{'invalid':invalidForm&&!registro.categoria}">
+            <select ng-model="registro.categoria" required ng-class="{'invalid':invalidForm&&!registro.categoria}" ng-if="registro.tipo==='despesa'">
                 <option>Alimentação</option>
                 <option>Cuidados pessoais</option>
                 <option>Educação</option>
@@ -22,6 +22,14 @@
                 <option>Saúde</option>
                 <option>Transporte</option>
                 <option>Vestuário</option>
+                <option>outros</option>
+            </select>
+            <select ng-model="registro.categoria" required ng-class="{'invalid':invalidForm&&!registro.categoria}" ng-if="registro.tipo==='despesa'">                
+                <option>Empréstimo</option>
+                <option>Rendimentos</option>
+                <option>Salário</option>
+                <option>Serviços</option>
+                <option>Vendas</option>
                 <option>outros</option>
             </select>
         </div>
