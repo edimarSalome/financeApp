@@ -4,10 +4,28 @@ financeApp.controller("detalhesCtrl",['$scope','$sce','utils','$state','$statePa
         
         $ctrl.construct = function(){
             if($stateParams.conta){
-                $scope.conta = $stateParams.conta;
+                $ctrl.conta = $stateParams.conta;
+                $ctrl.getDetalhes();
             }else{
                 $state.go('principal');
             }
+        };
+        
+        $ctrl.getDetalhes = function(){
+            $scope.registros = [];
+            
+            $db.ref('/registros/'+$ctrl.conta.id).on('value', function(snapshot) {
+                var test=snapshot.val();
+                try{
+                    $ctrl.registros = utils.firebaseArrayNoChild(snapshot);
+                    $scope.charged=true;
+                }finally {
+                    $scope.$apply(function(){
+                        $ctrl.registros = utils.firebaseArrayNoChild(snapshot);
+                        $scope.charged=true;
+                    });
+                }
+            });
         };
         
         $ctrl.construct();

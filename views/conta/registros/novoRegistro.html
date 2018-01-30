@@ -1,30 +1,45 @@
+<form ng-submit="registrar()">
 <div class="saldo registro-valor" ng-class="{'receita':registro.tipo==='entrada', 'despesa':registro.tipo==='despesa'}">
     <p>Nova <span ng-bind="registro.tipo"></span></p>
     <div style="margin-top: 1rem;">
         <h1>R$</h1>
-        <input type="tel" ng-model="registro.valor" />
+        <input type="tel" ng-model="registro.valor" autofocus="true" ui-number-mask="2" name="valor" required ng-class="{'invalid':invalidForm&&!registro.valor}"/>
     </div>
 </div>
-<div class="registro-campos">
-    <div class="form-group">
-        <label>Categoria</label>
-        <select>
-            <option>Cuidados pessoais</option>
-        </select>
-    </div>
+<div class="registro-campos" ng-if="registro.tipo!=='transferencia'">
     <div class="form-group">
         <label>Descriçao</label>
-        <input type="text" ng-model="registro.descricao" />
+        <input type="text" ng-model="registro.descricao" required ng-class="{'invalid':invalidForm&&!registro.descricao}"/>
+    </div>
+    <div style="display: flex">
+        <div class="form-group mr-1">
+            <label>Categoria</label>
+            <select ng-model="registro.categoria" required ng-class="{'invalid':invalidForm&&!registro.categoria}">
+                <option>Alimentação</option>
+                <option>Cuidados pessoais</option>
+                <option>Educação</option>
+                <option>Lazer</option>
+                <option>Saúde</option>
+                <option>Transporte</option>
+                <option>Vestuário</option>
+                <option>outros</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Conta</label>
+            <select ng-model="registro.conta" required ng-class="{'invalid':invalidForm&&!registro.conta}" ng-options="conta.id as conta.nome for conta in $ctrl.contas"></select>
+        </div>
     </div>
     <div style="display: flex">
         <div class="form-group mr-1">
             <label>Data</label>
-            <input type="date" ng-model="registro.data" />
+            <input type="date" ng-model="registro.data" required ng-class="{'invalid':invalidForm&&!registro.data}"/>
         </div>
         <div class="form-group">
             <label>Situação</label>
-            <select>
+            <select required ng-class="{'invalid':invalidForm&&!registro.situacao}">
                 <option>Realizado</option>
+                <option>Pendente</option>
             </select>
         </div>
     </div>
@@ -37,3 +52,5 @@
         </div>
     </div>
 </div>
+</form>
+<div class="alert danger" ng-if="invalidForm" ng-bind="msg"></div>

@@ -39,9 +39,12 @@ a.btn{display: inline-block; text-align: center;}
 }
 input, select{
     padding: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #e6e6e6;
     border-radius: 5px;
+    outline: none;
+    color:#666;
 }
+input.invalid, select.invalid{border-color:red!important;}
 .btn-cta{padding: 1rem 3.5rem;}
 .btn-primary{background-color: #00A6FF; color: #fff;}
 .btn-link{background-color: #fff; color: #00A6FF; text-decoration: none;}
@@ -213,7 +216,8 @@ i.transferencia{background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA
     transition: .3s ease all;
 }
 .dropdown.active{
-    height: 155px;
+    /*height: 155px;*/
+    height:105px;
 }
 .dropdown ul{
     padding: 0;
@@ -265,3 +269,11 @@ i.transferencia{background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA
     margin-bottom: .3rem;
 }
 .form-group select, .form-group input, .full-width{width:100%;}
+.alert{    
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: .5rem 1rem;
+}
+.alert.danger{background: red;}

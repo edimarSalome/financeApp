@@ -58,7 +58,7 @@
         Quanto você possui nesta conta atualmente?
     </p>
     <div class="col-wrapper input-group mt-2">
-        <input class="form-input" type="text" name="Saldo da conta" placeholder="R$ 1.000.000,00" ng-model="conta.saldo" />
+        <input class="form-input" type="tel" ui-number-mask="2" name="Saldo da conta" placeholder="R$ 1.000.000,00" ng-model="conta.saldo" />
         <button class="btn btn-primary" ng-click="cadastrarConta()">Pronto!</button>
     </div>
     <p class="bottom-link">

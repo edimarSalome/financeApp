@@ -1,38 +1,25 @@
 <div class="saldo">
-    <p>Saldo <span ng-bind="conta.nome"></span></p>
-    <h1 ng-class="{'debito':conta.saldo<0}">R$ <b ng-bind="conta.saldo|currency:''"></b></h1>
+    <p>Saldo <span ng-bind="$ctrl.conta.nome"></span></p>
+    <h1 ng-class="{'debito':$ctrl.conta.saldo<0}">R$ <b ng-bind="$ctrl.conta.saldo|currency:''"></b></h1>
 </div>
-<table class="detalhes">
-    <tr>
-        <td class="categoria">
-            &nbsp;
-        </td>
-        <td>
-            <i class="despesa">&nbsp;</i>
-        </td>
+<div class="spinner" style="margin:60px auto;" ng-if="!charged"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
+<table class="detalhes" ng-if="charged&&$ctrl.registros.length">
+    <tr ng-repeat="registro in $ctrl.registros">
+        <td class="categoria">&nbsp;</td>
+        <td><i ng-class="{'receita':registro.tipo==='entrada', 'despesa':registro.tipo==='despesa'}">&nbsp;</i></td>
         <td class="descricao">
-            <small>Eletrônicos</small>
-            <p>Photoshop</p>
-            <p class="valor">R$ <span>20,00</span></p>
+            <small ng-bind="registro.categoria"></small>
+            <p ng-bind="registro.descricao"></p>
+            <p class="valor">R$ <span ng-bind="registro.valor|currency:''"></span></p>
         </td>
-        <td width="1" class="data">
-            <p>20 JAN</p>
-        </td>
-    </tr>
-    <tr>
-        <td class="categoria">
-            &nbsp;
-        </td>
-        <td>
-            <i class="receita">&nbsp;</i>
-        </td>
-        <td class="descricao">
-            <small>Investimentos</small>
-            <p>Bitcoins</p>
-            <p class="valor">R$ <span>1200,00</span></p>
-        </td>
-        <td width="1" class="data">
-            <p>20 JAN</p>
-        </td>
+        <td width="1" class="data"><p ng-bind="registro.data|date:'dd MMM'"></p></td>
     </tr>
 </table>
+<div ng-if="charged&&!$ctrl.registros.length" style="margin-top: 4rem;">
+    <div class="hero-img" style="margin-bottom:2rem;">
+        <img alt="Extrato da conta" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDYwIDYwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MCA2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxnPgoJPHBhdGggZD0iTTYwLDQuMjkzYzAtMi4yMDYtMS43OTQtNC00LTRINGMtMi4yMDYsMC00LDEuNzk0LTQsNGMwLDEuODU5LDEuMjgsMy40MTEsMywzLjg1OHY0OC41NTZsMy0zbDYsNmw2LTZsNiw2bDYtNmw2LDZsNi02bDYsNiAgIGw2LTZsMywzVjguMTUxQzU4LjcyLDcuNzA0LDYwLDYuMTUyLDYwLDQuMjkzeiBNNTUsNTEuODc5bC0xLTFsLTYsNmwtNi02bC02LDZsLTYtNmwtNiw2bC02LTZsLTYsNmwtNi02bC0xLDFWOC4yOTN2LTNoNTB2MyAgIFY1MS44Nzl6IE01Nyw2LjAyNFYzLjI5M0gzdjIuNzMxQzIuNDAzLDUuNjc5LDIsNS4wMzIsMiw0LjI5M2MwLTEuMTAzLDAuODk3LTIsMi0yaDUyYzEuMTAzLDAsMiwwLjg5NywyLDIgICBDNTgsNS4wMzIsNTcuNTk3LDUuNjc5LDU3LDYuMDI0eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTQ0LDQwLjI5M0gyOWMtMC41NTIsMC0xLDAuNDQ3LTEsMXMwLjQ0OCwxLDEsMWgxNWMwLjU1MiwwLDEtMC40NDcsMS0xUzQ0LjU1Miw0MC4yOTMsNDQsNDAuMjkzeiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTQ4LjI5LDQwLjU4M2MtMC4xOCwwLjE4OS0wLjI5LDAuNDM5LTAuMjksMC43MWMwLDAuMjYsMC4xMSwwLjUyLDAuMjksMC43MWMwLjE5LDAuMTgsMC40NSwwLjI5LDAuNzEsMC4yOSAgIGMwLjI2LDAsMC41Mi0wLjExLDAuNzEtMC4yOWMwLjE4LTAuMTksMC4yOS0wLjQ1LDAuMjktMC43MWMwLTAuMjcxLTAuMTEtMC41MjEtMC4yOS0wLjcxQzQ5LjMzLDQwLjIxMyw0OC42Nyw0MC4yMTMsNDguMjksNDAuNTgzeiAgICIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTQ5LDI2LjI5M0gzNGMtMC41NTIsMC0xLDAuNDQ3LTEsMXMwLjQ0OCwxLDEsMWgxNWMwLjU1MiwwLDEtMC40NDcsMS0xUzQ5LjU1MiwyNi4yOTMsNDksMjYuMjkzeiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTQ5LDMzLjI5M0gzOWMtMC41NTIsMC0xLDAuNDQ3LTEsMXMwLjQ0OCwxLDEsMWgxMGMwLjU1MiwwLDEtMC40NDcsMS0xUzQ5LjU1MiwzMy4yOTMsNDksMzMuMjkzeiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTI4LDM0LjI5M2MwLDAuNTUzLDAuNDQ4LDEsMSwxaDJjMC41NTIsMCwxLTAuNDQ3LDEtMXMtMC40NDgtMS0xLTFoLTJDMjguNDQ4LDMzLjI5MywyOCwzMy43NCwyOCwzNC4yOTN6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNNDUsMjAuMjkzYzAtMC41NTMtMC40NDgtMS0xLTFIMjljLTAuNTUyLDAtMSwwLjQ0Ny0xLDFzMC40NDgsMSwxLDFoMTVDNDQuNTUyLDIxLjI5Myw0NSwyMC44NDYsNDUsMjAuMjkzeiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTQ4LjI5LDE5LjU4M2MtMC4xOCwwLjE4OS0wLjI5LDAuNDM5LTAuMjksMC43MWMwLDAuMjYsMC4xMSwwLjUyLDAuMjksMC43MWMwLjE5LDAuMTgsMC40NSwwLjI5LDAuNzEsMC4yOSAgIGMwLjI3LDAsMC41Mi0wLjExLDAuNzEtMC4yOWMwLjE4LTAuMTksMC4yOS0wLjQ1LDAuMjktMC43MXMtMC4xMS0wLjUyMS0wLjI5LTAuNzFDNDkuMzQsMTkuMjEzLDQ4LjY2LDE5LjIxMyw0OC4yOSwxOS41ODN6IiBmaWxsPSIjRkZGRkZGIi8+Cgk8cGF0aCBkPSJNMzAuNzEsMjguMDAzYzAuMTgtMC4xOSwwLjI5LTAuNDQsMC4yOS0wLjcxYzAtMC4yNzEtMC4xMS0wLjUyMS0wLjI5LTAuNzFjLTAuMzctMC4zNy0xLjA0LTAuMzctMS40MiwwICAgYy0wLjE4LDAuMTg5LTAuMjksMC40MzktMC4yOSwwLjcxYzAsMC4yNywwLjExLDAuNTIsMC4yOSwwLjcxYzAuMTksMC4xOCwwLjQ1LDAuMjksMC43MSwwLjI5ICAgQzMwLjI2LDI4LjI5MywzMC41MiwyOC4xODMsMzAuNzEsMjguMDAzeiIgZmlsbD0iI0ZGRkZGRiIvPgoJPHBhdGggZD0iTTM1LjcxLDM1LjAwM2MwLjE4LTAuMTksMC4yOS0wLjQ0LDAuMjktMC43MWMwLTAuMjcxLTAuMTEtMC41My0wLjI5LTAuNzFjLTAuMzctMC4zNy0xLjA0LTAuMzctMS40MiwwICAgYy0wLjE4LDAuMTg5LTAuMjksMC40NS0wLjI5LDAuNzFzMC4xMSwwLjUyLDAuMjksMC43MWMwLjE5LDAuMTgsMC40NSwwLjI5LDAuNzEsMC4yOUMzNS4yNiwzNS4yOTMsMzUuNTIsMzUuMTgzLDM1LjcxLDM1LjAwM3oiIGZpbGw9IiNGRkZGRkYiLz4KCTxwYXRoIGQ9Ik0xNywyMS4zOTR2LTEuMTAxYzAtMC41NTMtMC40NDgtMS0xLTFzLTEsMC40NDctMSwxdjEuMTA0Yy0xLjA5MSwwLjIyMi0yLjA4NSwwLjgwMS0yLjgxOCwxLjY2OCAgIGMtMC42MTEsMC43MjItMC44OTQsMS42NDYtMC43OTQsMi42MDNjMC4xMDIsMC45NzksMC42MDYsMS44ODcsMS4zODMsMi40OTFMMTUsMjkuODkzdjUuNDM4Yy0xLjE2MS0wLjQxNC0yLTEuNTE0LTItMi44MTYgICBjMC0wLjU1My0wLjQ0OC0xLTEtMXMtMSwwLjQ0Ny0xLDFjMCwyLjQxNCwxLjcyMSw0LjQzNCw0LDQuODk5djAuODc4YzAsMC41NTMsMC40NDgsMSwxLDFzMS0wLjQ0NywxLTF2LTAuODgyICAgYzEuMDkxLTAuMjIyLDIuMDg1LTAuODAxLDIuODE5LTEuNjY4YzAuNjExLTAuNzI0LDAuODkzLTEuNjQ4LDAuNzkzLTIuNjA1Yy0wLjEwMy0wLjk3OC0wLjYwNi0xLjg4NS0xLjM4My0yLjQ4OEwxNywyOC45MTZ2LTUuNDM4ICAgYzEuMTYxLDAuNDE0LDIsMS41MTQsMiwyLjgxNmMwLDAuNTUzLDAuNDQ4LDEsMSwxczEtMC40NDcsMS0xQzIxLDIzLjg3OSwxOS4yNzksMjEuODU5LDE3LDIxLjM5NHogTTE4LjAwMSwzMi4yMjggICBjMC4zNDksMC4yNzEsMC41NzYsMC42OCwwLjYyMiwxLjExOGMwLjA0MywwLjQxLTAuMDc1LDAuODAzLTAuMzMxLDEuMTA1Yy0wLjM0OCwwLjQxMS0wLjc5OCwwLjY5OS0xLjI5MiwwLjg3NXYtMy44NzggICBMMTguMDAxLDMyLjIyOHogTTEzLjk5OSwyNi41ODFjLTAuMzUtMC4yNzItMC41NzYtMC42ODEtMC42MjItMS4xMmMtMC4wNDItMC40MDksMC4wNzUtMC44MDEsMC4zMzEtMS4xMDQgICBjMC4zNDgtMC40MTEsMC43OTgtMC42OTksMS4yOTItMC44NzV2My44NzdMMTMuOTk5LDI2LjU4MXoiIGZpbGw9IiNGRkZGRkYiLz4KCTxjaXJjbGUgY3g9IjQwIiBjeT0iMTEuMjkzIiByPSIxIiBmaWxsPSIjRkZGRkZGIi8+Cgk8Y2lyY2xlIGN4PSIzNiIgY3k9IjExLjI5MyIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgoJPGNpcmNsZSBjeD0iNDQiIGN5PSIxMS4yOTMiIHI9IjEiIGZpbGw9IiNGRkZGRkYiLz4KCTxjaXJjbGUgY3g9IjMyIiBjeT0iMTEuMjkzIiByPSIxIiBmaWxsPSIjRkZGRkZGIi8+Cgk8Y2lyY2xlIGN4PSI0OCIgY3k9IjExLjI5MyIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgoJPGNpcmNsZSBjeD0iMjAiIGN5PSIxMS4yOTMiIHI9IjEiIGZpbGw9IiNGRkZGRkYiLz4KCTxjaXJjbGUgY3g9IjI0IiBjeT0iMTEuMjkzIiByPSIxIiBmaWxsPSIjRkZGRkZGIi8+Cgk8Y2lyY2xlIGN4PSIyOCIgY3k9IjExLjI5MyIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgoJPGNpcmNsZSBjeD0iNTIiIGN5PSIxMS4yOTMiIHI9IjEiIGZpbGw9IiNGRkZGRkYiLz4KCTxjaXJjbGUgY3g9IjE2IiBjeT0iMTEuMjkzIiByPSIxIiBmaWxsPSIjRkZGRkZGIi8+Cgk8Y2lyY2xlIGN4PSIxMiIgY3k9IjExLjI5MyIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgoJPGNpcmNsZSBjeD0iOCIgY3k9IjExLjI5MyIgcj0iMSIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+    </div>
+    <p class="msg-text">
+        Aqui é onde você verá seu extrato quando houver registros de entrada ou saída nesta conta.
+    </p>
+</div>
