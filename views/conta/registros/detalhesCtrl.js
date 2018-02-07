@@ -18,10 +18,12 @@ financeApp.controller("detalhesCtrl",['$scope','$sce','utils','$state','$statePa
                 var test=snapshot.val();
                 try{
                     $ctrl.registros = utils.firebaseArrayNoChild(snapshot);
+                    $ctrl.registros.reverse();
                     $scope.charged=true;
                 }finally {
                     $scope.$apply(function(){
                         $ctrl.registros = utils.firebaseArrayNoChild(snapshot);
+                        $ctrl.registros.reverse();
                         $scope.charged=true;
                     });
                 }

@@ -1,7 +1,10 @@
 <!--- Principal --->
 <div class="saldo">
     <p>Saldo total</p>
-    <h1 ng-class="{'debito':$ctrl.getSaldoTotal()<0}">R$ <b ng-bind="$ctrl.getSaldoTotal()|currency:''"></b></h1>
+    <h1 ng-if="showSaldo" ng-click="toggleSaldo()" ng-class="{'debito':$ctrl.getSaldoTotal()<0}">R$ <b ng-bind="$ctrl.getSaldoTotal()|currency:''"></b></h1>
+    <h1 ng-if="!showSaldo" ng-click="toggleSaldo()" style="height:15px; padding:0 5rem;">
+        <hr style="margin-top: 1.5rem;">
+    </h1>
 </div>
 <div class="spinner" style="margin:60px auto;" ng-if="!charged"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>
 <div class="contas" ng-if="charged">

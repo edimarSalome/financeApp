@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="financeApp">
+    <head>
+        <title>FinanceApp</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.min.css" rel="stylesheet" type="text/css"/>
+        <meta name="theme-color" content="#1667ca">
+        <style>.spinner{width:40px;height:40px;position:relative;margin:100px auto}.double-bounce1,.double-bounce2{width:100%;height:100%;border-radius:50%;background-color:#4ac2e8;opacity:.6;position:absolute;top:0;left:0;-webkit-animation:sk-bounce 2s infinite ease-in-out;animation:sk-bounce 2s infinite ease-in-out}.double-bounce2{-webkit-animation-delay:-1s;animation-delay:-1s}@-webkit-keyframes sk-bounce{0%,100%{-webkit-transform:scale(0)}50%{-webkit-transform:scale(1)}}@keyframes sk-bounce{0%,100%{transform:scale(0);-webkit-transform:scale(0)}50%{transform:scale(1);-webkit-transform:scale(1)}}</style>
+    </head>
+    <body>
+        <div ui-view></div>
+        <script src="lib/angular.min.js" type="text/javascript"></script>
+        <script src="lib/angular-sanitize.min.js" type="text/javascript"></script>
+        <script src="lib/angular-locale_pt-br.js" type="text/javascript"></script>
+        <script src="lib/firebase.js" type="text/javascript"></script>
+        <script src="lib/angularfire.min.js" type="text/javascript"></script>
+        <script src="js/fbaseConfig.min.js" type="text/javascript"></script>
+        <script src="//unpkg.com/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+        <script src="js/app.min.js" type="text/javascript"></script>
+        <script src="views/main/mainCtrl.min.js" type="text/javascript"></script>
+        <script src="views/conta/novaContaCtrl.min.js" type="text/javascript"></script>
+        <script src="views/conta/registros/detalhesCtrl.min.js" type="text/javascript"></script>
+        <script src="views/conta/registros/novoRegistroCtrl.min.js" type="text/javascript"></script>
+        <script src="js/state-config.min.js" type="text/javascript"></script>
+        <script src="lib/masks.min.js" type="text/javascript"></script>
+    </body>
+</html>

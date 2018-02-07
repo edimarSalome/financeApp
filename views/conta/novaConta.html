@@ -20,10 +20,12 @@
     <p class="msg-text">
         Contas são nossos depósitos de dinheiro. Geralmente são carteiras, poupanças, contas correntes etc ...
     </p>
-    <div class="col-wrapper input-group mt-2">
-        <input class="form-input" type="text" name="Nome da conta" ng-model="conta.nome" placeholder="Nome da conta" />
-        <button class="btn btn-primary" ng-click="salvarNomeConta()">></button>
-    </div>
+    <form ng-submit="salvarNomeConta()">
+        <div class="col-wrapper input-group mt-2">
+            <input class="form-input" type="text" name="Nome da conta" ng-model="conta.nome" placeholder="Nome da conta" />
+            <button class="btn btn-primary" type="submit">></button>
+        </div>
+    </form>
 </div>
 <!-- Passo 3 --->
 <div ng-if="isStep(3)">
@@ -35,14 +37,16 @@
         O tipo da conta permite a você saber por exemplo, quanto foi o rendimento do mês, caso seja de investimento ou poupança.
     </p>
     <div class="col-wrapper input-group mt-2">
-        <select class="form-input" name="Tipo de conta" ng-model="conta.tipo">
-            <option>Carteira</option>
-            <option>Conta corrente</option>
-            <option>Conta poupança</option>
-            <option>Investimento</option>
-            <option>Criptomoeda</option>
-        </select>
-        <button class="btn btn-primary" ng-click="salvarTipoConta()">></button>
+        <form ng-submit="salvarTipoConta()">
+            <select class="form-input" name="Tipo de conta" ng-model="conta.tipo">
+                <option>Carteira</option>
+                <option>Conta corrente</option>
+                <option>Conta poupança</option>
+                <option>Investimento</option>
+                <option>Criptomoeda</option>
+            </select>
+            <button class="btn btn-primary" type="submit">></button>
+        </form>
     </div>
     <p class="bottom-link">
         <a href="#">Você está configurando <span ng-bind="conta.nome"></span></a>
@@ -58,8 +62,10 @@
         Quanto você possui nesta conta atualmente?
     </p>
     <div class="col-wrapper input-group mt-2">
-        <input class="form-input" type="tel" ui-number-mask="2" name="Saldo da conta" placeholder="R$ 1.000.000,00" ng-model="conta.saldo" />
-        <button class="btn btn-primary" ng-click="cadastrarConta()">Pronto!</button>
+        <form ng-submit="cadastrarConta()">
+            <input class="form-input" type="tel" ui-number-mask="2" name="Saldo da conta" placeholder="R$ 1.000.000,00" ng-model="conta.saldo" />
+            <button class="btn btn-primary" type="submit">Pronto!</button>
+        </form>
     </div>
     <p class="bottom-link">
         <a href="#">Você está configurando <span ng-bind="conta.nome"></span></a>
